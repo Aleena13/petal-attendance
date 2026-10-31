@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Petal | Attendance Tracker</title>
+
+    <!-- Existing stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA configuration -->
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="theme-color" content="#f8c8dc">
+
+    <meta name="description"
+          content="Petal - Your personal college attendance tracker.">
+
+    <!-- iPhone support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="default">
+
+    <meta name="apple-mobile-web-app-title" content="Petal">
+
+    <link rel="apple-touch-icon"
+          href="./icons/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <span class="flower">✿</span>
+
+            <div>
+                <h2>petal</h2>
+                <small>your little study space</small>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <button class="nav-btn active" data-page="dashboard">
+                ⌂ Dashboard
+            </button>
+
+            <button class="nav-btn" data-page="attendance">
+                ▦ Attendance
+            </button>
+
+            <button class="nav-btn" data-page="bunks">
+                ♡ Class bunks
+            </button>
+
+            <button class="nav-btn" data-page="reports">
+                ▤ Reports
+            </button>
+
+            <button class="nav-btn" data-page="settings">
+                ⚙ Settings
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <span>Your semester, in bloom. ✿</span>
+
+            <small>Made with love by Aleena ♡</small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <p id="greeting">Good morning!</p>
+
+                <h1 id="welcomeName">Welcome back, ♡</h1>
+            </div>
+
+            <div class="date-pill" id="todayDate"></div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+
+            <div class="hero">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR SEMESTER COMPANION ✿
+                    </span>
+
+                    <h2>
+                        A little progress<br>
+                        every day.
+                    </h2>
+
+                    <p>
+                        Keep showing up. Your future self will thank you.
+                    </p>
+
+                </div>
+
+                <div class="hero-flower">🌷</div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+            <div class="stats-grid">
+
+                <article class="stat-card pink">
+
+                    <span>Overall attendance</span>
+
+                    <h2 id="overallPercent">0%</h2>
+
+                    <small>Your semester attendance</small>
+
+                </article>
+
+
+                <article class="stat-card purple">
+
+                    <span>Days present</span>
+
+                    <h2 id="overallPresent">0</h2>
+
+                    <small>Recorded present days</small>
+
+                </article>
+
+
+                <article class="stat-card peach">
+
+                    <span>Classes bunked</span>
+
+                    <h2 id="overallBunks">0</h2>
+
+                    <small>Total bunked classes</small>
+
+                </article>
+
+            </div>
+
+
+            <!-- MONTHLY PROGRESS -->
+            <div class="content-grid">
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <h3>This month's attendance</h3>
+                            <p>Your monthly progress</p>
+                        </div>
+
+                        <span class="mini-flower">✿</span>
+
+                    </div>
+
+                    <div class="monthly-number" id="monthlyPercent">
+                        0%
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div class="progress-fill"
+                             id="monthlyProgress">
+                        </div>
+
+                    </div>
+
+                    <div class="progress-labels">
+
+                        <span id="monthlyPresent">0 present</span>
+
+                        <span id="monthlyTotal">0 working days</span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ATTENDANCE GOAL -->
+                <article class="panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <h3>Attendance goal</h3>
+                            <p>Minimum required attendance</p>
+                        </div>
+
+                        <span class="mini-flower">♡</span>
+
+                    </div>
+
+                    <div class="goal-number">75%</div>
+
+                    <p class="muted" id="goalMessage">
+                        Keep attending your classes!
+                    </p>
+
+                    <button class="soft-button"
+                            data-go="attendance">
+                        Mark attendance →
+                    </button>
+
+                </article>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+            <article class="panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <h3>Quick actions</h3>
+                        <p>Keep your records up to date</p>
+                    </div>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <button class="quick-button"
+                            data-go="attendance">
+                        ✿ Mark attendance
+                    </button>
+
+                    <button class="quick-button"
+                            data-go="bunks">
+                        ♡ Log a bunk
+                    </button>
+
+                    <button class="quick-button"
+                            data-go="reports">
+                        ▤ View reports
+                    </button>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- ATTENDANCE -->
+        <section class="page" id="attendance">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SHOWING UP MATTERS
+                    </span>
+
+                    <h2>Attendance calendar</h2>
+
+                    <p>Tap a date to mark your attendance.</p>
+
+                </div>
+
+            </div>
+
+
+            <article class="panel">
+
+                <div class="calendar-toolbar">
+
+                    <button id="prevMonth"
+                            class="icon-button">
+                        ←
+                    </button>
+
+                    <h3 id="calendarTitle">Month Year</h3>
+
+                    <button id="nextMonth"
+                            class="icon-button">
+                        →
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-legend">
+
+                    <span>
+                        <i class="dot present"></i>
+                        Present
+                    </span>
+
+                    <span>
+                        <i class="dot absent"></i>
+                        Absent
+                    </span>
+
+                    <span>
+                        <i class="dot holiday"></i>
+                        Holiday
+                    </span>
+
+                    <span>
+                        <i class="dot unmarked"></i>
+                        Unmarked
+                    </span>
+
+                </div>
+
+
+                <div class="calendar" id="calendarGrid"></div>
+
+
+                <div class="calendar-actions">
+
+                    <button class="soft-button"
+                            id="markPresent">
+                        Mark today present
+                    </button>
+
+                    <button class="soft-button secondary"
+                            id="markAbsent">
+                        Mark today absent
+                    </button>
+
+                    <button class="soft-button secondary"
+                            id="markHoliday">
+                        Mark today holiday
+                    </button>
+
+                </div>
+
+
+                <p class="muted">
+                    Sundays are automatically excluded from working days.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- CLASS BUNKS -->
+        <section class="page" id="bunks">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        BE HONEST WITH YOURSELF ♡
+                    </span>
+
+                    <h2>Class bunk log</h2>
+
+                    <p>Keep track of missed classes by subject.</p>
+
+                </div>
+
+            </div>
+
+
+            <article class="panel">
+
+                <h3>Log a bunk</h3>
+
+                <form id="bunkForm" class="bunk-form">
+
+                    <label>
+                        Subject
+
+                        <select id="bunkSubject" required></select>
+                    </label>
+
+
+                    <label>
+                        Date
+
+                        <input type="date"
+                               id="bunkDate"
+                               required>
+                    </label>
+
+
+                    <label>
+                        Number of classes
+
+                        <input type="number"
+                               id="bunkCount"
+                               min="1"
+                               value="1"
+                               required>
+                    </label>
+
+
+                    <label>
+                        Reason (optional)
+
+                        <input type="text"
+                               id="bunkReason"
+                               placeholder="e.g. Personal work">
+                    </label>
+
+
+                    <button type="submit"
+                            class="primary-button">
+                        + Add bunk record
+                    </button>
+
+                </form>
+
+            </article>
+
+
+            <!-- SUBJECT SUMMARY -->
+            <article class="panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <h3>Subject-wise bunks</h3>
+                        <p>Your total missed classes</p>
+                    </div>
+
+                </div>
+
+                <div id="subjectBunkSummary"
+                     class="subject-summary">
+                </div>
+
+            </article>
+
+
+            <!-- RECENT RECORDS -->
+            <article class="panel">
+
+                <h3>Recent records</h3>
+
+                <div id="bunkRecords"></div>
+
+            </article>
+
+        </section>
+
+
+        <!-- REPORTS -->
+        <section class="page" id="reports">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR PROGRESS, AT A GLANCE
+                    </span>
+
+                    <h2>Monthly reports</h2>
+
+                    <p>
+                        See how consistently you've been showing up.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MONTHLY BREAKDOWN -->
+            <article class="panel">
+
+                <h3>Monthly attendance breakdown</h3>
+
+                <div id="monthlyReports"></div>
+
+            </article>
+
+
+            <!-- ATTENDANCE CALCULATOR -->
+            <article class="panel">
+
+                <h3>75% attendance calculator</h3>
+
+                <p class="muted">
+                    Check how many classes you need to attend to
+                    reach the required percentage.
+                </p>
+
+
+                <div class="calculator-grid">
+
+                    <div>
+
+                        <label for="calcHeld">
+                            Classes held
+                        </label>
+
+                        <input type="number"
+                               id="calcHeld"
+                               min="0"
+                               value="0">
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="calcAttended">
+                            Classes attended
+                        </label>
+
+                        <input type="number"
+                               id="calcAttended"
+                               min="0"
+                               value="0">
+
+                    </div>
+
+                </div>
+
+
+                <button class="primary-button"
+                        id="calculateButton">
+                    Calculate
+                </button>
+
+
+                <div id="calculatorResult"
+                     class="calculator-result">
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+        <section class="page" id="settings">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MAKE PETAL YOURS
+                    </span>
+
+                    <h2>Your profile & settings</h2>
+
+                    <p>Personalise your semester tracker.</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+            <article class="panel">
+
+                <h3>Profile</h3>
+
+                <form id="profileForm"
+                      class="settings-form">
+
+                    <label>
+                        Your name
+
+                        <input type="text"
+                               id="studentName"
+                               placeholder="Enter your name">
+                    </label>
+
+
+                    <label>
+                        Semester start date
+
+                        <input type="date"
+                               id="semesterStart"
+                               required>
+                    </label>
+
+
+                    <label>
+                        Semester end date
+
+                        <input type="date"
+                               id="semesterEnd"
+                               required>
+                    </label>
+
+
+                    <label>
+                        Attendance requirement (%)
+
+                        <input type="number"
+                               id="requiredPercent"
+                               min="1"
+                               max="100"
+                               value="75">
+                    </label>
+
+
+                    <button type="submit"
+                            class="primary-button">
+                        Save settings
+                    </button>
+
+                </form>
+
+            </article>
+
+
+            <!-- DATA BACKUP -->
+            <article class="panel">
+
+                <h3>Your data</h3>
+
+                <p class="muted">
+                    Your records are saved in this browser.
+                </p>
+
+
+                <div class="quick-actions">
+
+                    <button class="soft-button"
+                            id="exportData">
+                        Download backup
+                    </button>
+
+
+                    <label class="soft-button file-label">
+
+                        Restore backup
+
+                        <input type="file"
+                               id="importData"
+                               accept=".json"
+                               hidden>
+
+                    </label>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            Petal <span>✿</span> Growing one day at a time.
+
+            <br>
+
+            <small>Made with love by Aleena ♡</small>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+
+<!-- EXISTING JAVASCRIPT -->
+<script src="script.js"></script>
+
+
+<!-- PWA SERVICE WORKER REGISTRATION -->
+<script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker
+                .register("./service-worker.js")
+
+                .then(registration => {
+
+                    console.log(
+                        "Petal service worker registered:",
+                        registration.scope
+                    );
+
+                })
+
+                .catch(error => {
+
+                    console.error(
+                        "Petal service worker registration failed:",
+                        error
+                    );
+
+                });
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
