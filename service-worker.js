@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "petal-v1";
+const CACHE_NAME = "petal-v2";
 
 const FILES_TO_CACHE = [
     "./index.html",
