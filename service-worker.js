@@ -6,7 +6,10 @@ const FILES_TO_CACHE = [
     "./style.css",
     "./script.js",
     "./manifest.json",
-    "./icons/petal-icon.svg"
+    "./icons/petal-icon.svg",
+    "./icons/petal-192.png",
+    "./icons/petal-512.png"
+];
 ];
 
 // Install and cache the app files
