@@ -1,15 +1,16 @@
 
-const CACHE_NAME = "petal-v2";
+const CACHE_NAME = "petal-v3";
 
 const FILES_TO_CACHE = [
+    "./",
     "./index.html",
     "./style.css",
     "./script.js",
     "./manifest.json",
     "./icons/petal-icon.svg",
     "./icons/petal-192.png",
-    "./icons/petal-512.png"
-];
+    "./icons/petal-512.png",
+    "./icons/apple-touch-icon.png"
 ];
 
 // Install and cache the app files
@@ -29,8 +30,10 @@ self.addEventListener("activate", event => {
         caches.keys().then(keys => {
             return Promise.all(
                 keys
-                    .filter(key => key.startsWith("petal-") &&
-                                   key !== CACHE_NAME)
+                    .filter(key =>
+                        key.startsWith("petal-") &&
+                        key !== CACHE_NAME
+                    )
                     .map(key => caches.delete(key))
             );
         })
@@ -46,10 +49,9 @@ self.addEventListener("fetch", event => {
 
     // Only handle requests from this website
     if (url.origin !== self.location.origin) return;
-
     if (request.method !== "GET") return;
 
-    // Try the network first for page navigation
+    // Network first for page navigation
     if (request.mode === "navigate") {
         event.respondWith(
             fetch(request)
@@ -72,7 +74,7 @@ self.addEventListener("fetch", event => {
         return;
     }
 
-    // Use cached files first
+    // Cache first for other files
     event.respondWith(
         caches.match(request).then(cached => {
             if (cached) return cached;
